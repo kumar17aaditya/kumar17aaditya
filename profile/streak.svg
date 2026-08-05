@@ -1,24 +1,27 @@
 <svg
   width="495"
-  height="272"
-  viewBox="0 0 495 272"
+  height="195"
+  viewBox="0 0 495 195"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <rect width="495" height="272" rx="6" fill="#1a1b27"/>
+
+  <rect
+    width="495"
+    height="195"
+    rx="6"
+    fill="#1a1b27"
+  />
+
 
   <style>
-    .header {
-      font: 600 20px Arial, sans-serif;
-      fill: #70a5fd;
-    }
 
     .number {
-      font: 700 30px Arial, sans-serif;
+      font: 700 26px Arial, sans-serif;
       fill: #70a5fd;
     }
 
     .current {
-      font: 700 30px Arial, sans-serif;
+      font: 700 26px Arial, sans-serif;
       fill: #bf91f3;
     }
 
@@ -36,56 +39,146 @@
       stroke: #8b949e;
       stroke-width: 1;
     }
+
   </style>
 
-  <text x="25" y="38" class="header">Contribution Activity</text>
 
-  <line x1="165" y1="66" x2="165" y2="238" class="line"/>
-  <line x1="330" y1="66" x2="330" y2="238" class="line"/>
+  <!-- ================================================ -->
+  <!-- DIVIDERS                                         -->
+  <!-- ================================================ -->
 
-  <text x="82" y="140" text-anchor="middle" class="number">
-    160
+
+  <line
+    x1="165"
+    y1="25"
+    x2="165"
+    y2="170"
+    class="line"
+  />
+
+
+  <line
+    x1="330"
+    y1="25"
+    x2="330"
+    y2="170"
+    class="line"
+  />
+
+
+  <!-- ================================================ -->
+  <!-- TOTAL CONTRIBUTIONS                              -->
+  <!-- ================================================ -->
+
+
+  <text
+    x="82"
+    y="78"
+    text-anchor="middle"
+    class="number"
+  >
+    159
   </text>
 
-  <text x="82" y="205" text-anchor="middle" class="label">
+
+  <text
+    x="82"
+    y="112"
+    text-anchor="middle"
+    class="label"
+  >
     Total Contributions
   </text>
 
-  <text x="82" y="226" text-anchor="middle" class="sub">
+
+  <text
+    x="82"
+    y="138"
+    text-anchor="middle"
+    class="sub"
+  >
     Last 365 days
   </text>
 
+
+  <!-- ================================================ -->
+  <!-- CURRENT STREAK                                   -->
+  <!-- ================================================ -->
+
+
   <circle
     cx="247"
-    cy="130"
-    r="42"
+    cy="70"
+    r="39"
     fill="none"
     stroke="#70a5fd"
     stroke-width="5"
   />
 
-  <text x="247" y="139" text-anchor="middle" class="current">
+
+  <text
+    x="247"
+    y="79"
+    text-anchor="middle"
+    class="current"
+  >
     37
   </text>
 
-  <text x="247" y="205" text-anchor="middle" class="label">
+
+  <text
+    x="247"
+    y="125"
+    text-anchor="middle"
+    class="label"
+  >
     Current Streak
   </text>
 
-  <text x="247" y="226" text-anchor="middle" class="sub">
+
+  <text
+    x="247"
+    y="151"
+    text-anchor="middle"
+    class="sub"
+  >
     Jun 30 - Aug 5
   </text>
 
-  <text x="412" y="140" text-anchor="middle" class="number">
+
+  <!-- ================================================ -->
+  <!-- LONGEST STREAK                                   -->
+  <!-- ================================================ -->
+
+
+  <text
+    x="412"
+    y="78"
+    text-anchor="middle"
+    class="number"
+  >
     37
   </text>
 
-  <text x="412" y="205" text-anchor="middle" class="label">
+
+  <text
+    x="412"
+    y="112"
+    text-anchor="middle"
+    class="label"
+  >
     Longest Streak
   </text>
 
-  <text x="412" y="226" text-anchor="middle" class="sub">
+
+  <text
+    x="412"
+    y="138"
+    text-anchor="middle"
+    class="sub"
+  >
     Jun 30 - Aug 5
   </text>
+
 
 </svg>
