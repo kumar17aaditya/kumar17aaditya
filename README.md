@@ -104,6 +104,31 @@ Automation platform developed during my internship at Nokia for infrastructure m
 ## 📊 GitHub Statistics
 
 <p align="center">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://raw.githubusercontent.com/kumar17aaditya/kumar17aaditya/output/github-contribution-grid-snake-dark.svg"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://raw.githubusercontent.com/kumar17aaditya/kumar17aaditya/output/github-contribution-grid-snake.svg"
+    />
+    <img
+      alt="GitHub Contribution Snake"
+      src="https://raw.githubusercontent.com/kumar17aaditya/kumar17aaditya/output/github-contribution-grid-snake.svg"
+    />
+  </picture>
+</p>
+
+<p align="center">
+  <img
+    src="https://github-readme-activity-graph.vercel.app/graph?username=kumar17aaditya&theme=react-dark&hide_border=true&area=true&hide_title=true"
+    width="100%"
+    alt="Contribution Graph"
+  />
+</p>
+
+<p align="center">
   <img height="180em" src="https://github-readme-stats-sigma-five.vercel.app/api?username=kumar17aaditya&show_icons=true&theme=tokyonight&hide_border=true" />
   <img height="180em" src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=kumar17aaditya&layout=compact&theme=tokyonight&hide_border=true" />
 </p>
