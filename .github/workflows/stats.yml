@@ -36,15 +36,243 @@ jobs:
           token: ${{ secrets.PAT_1 }}
 
       - name: Generate streak card
+        env:
+          GH_TOKEN: ${{ secrets.PAT_1 }}
         run: |
-          curl -L \
-            "https://streak-stats.demolab.com/?user=kumar17aaditya&theme=tokyonight&hide_border=true" \
-            -o profile/streak.svg
+          python <<'PY'
+          import os
+          import json
+          import urllib.request
+          from datetime import date, timedelta
+          from xml.sax.saxutils import escape
+
+          username = "kumar17aaditya"
+          token = os.environ["GH_TOKEN"]
+
+          today = date.today()
+          start = today - timedelta(days=365)
+
+          query = """
+          query($userName:String!, $from:DateTime!, $to:DateTime!) {
+            user(login:$userName) {
+              contributionsCollection(from:$from, to:$to) {
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                    }
+                  }
+                }
+              }
+            }
+          }
+          """
+
+          variables = {
+              "userName": username,
+              "from": start.isoformat() + "T00:00:00Z",
+              "to": today.isoformat() + "T23:59:59Z"
+          }
+
+          payload = json.dumps({
+              "query": query,
+              "variables": variables
+          }).encode()
+
+          request = urllib.request.Request(
+              "https://api.github.com/graphql",
+              data=payload,
+              headers={
+                  "Authorization": f"Bearer {token}",
+                  "Content-Type": "application/json",
+                  "User-Agent": "github-streak-generator"
+              }
+          )
+
+          with urllib.request.urlopen(request) as response:
+              result = json.load(response)
+
+          if "errors" in result:
+              raise RuntimeError(result["errors"])
+
+          calendar = (
+              result["data"]["user"]
+              ["contributionsCollection"]
+              ["contributionCalendar"]
+          )
+
+          total = calendar["totalContributions"]
+
+          days = []
+
+          for week in calendar["weeks"]:
+              for d in week["contributionDays"]:
+                  days.append((
+                      date.fromisoformat(d["date"]),
+                      d["contributionCount"]
+                  ))
+
+          days.sort()
+
+          longest = 0
+          running = 0
+          longest_start = None
+          longest_end = None
+          running_start = None
+
+          for d, count in days:
+              if count > 0:
+                  if running == 0:
+                      running_start = d
+
+                  running += 1
+
+                  if running > longest:
+                      longest = running
+                      longest_start = running_start
+                      longest_end = d
+              else:
+                  running = 0
+                  running_start = None
+
+          by_date = dict(days)
+
+          current = 0
+          cursor = today
+
+          # If today has no contribution yet, count backwards from yesterday.
+          if by_date.get(cursor, 0) == 0:
+              cursor -= timedelta(days=1)
+
+          current_end = cursor
+
+          while by_date.get(cursor, 0) > 0:
+              current += 1
+              cursor -= timedelta(days=1)
+
+          current_start = cursor + timedelta(days=1)
+
+          def pretty(d):
+              if d is None:
+                  return "-"
+              return d.strftime("%b %-d")
+
+          current_range = (
+              f"{pretty(current_start)} - {pretty(current_end)}"
+              if current
+              else "No current streak"
+          )
+
+          longest_range = (
+              f"{pretty(longest_start)} - {pretty(longest_end)}"
+              if longest
+              else "-"
+          )
+
+          svg = f'''<svg
+            width="495"
+            height="195"
+            viewBox="0 0 495 195"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="495" height="195" rx="6" fill="#1a1b27"/>
+
+            <style>
+              .number {{
+                font: 700 28px Arial, sans-serif;
+                fill: #70a5fd;
+              }}
+
+              .current {{
+                font: 700 28px Arial, sans-serif;
+                fill: #bf91f3;
+              }}
+
+              .label {{
+                font: 14px Arial, sans-serif;
+                fill: #70a5fd;
+              }}
+
+              .sub {{
+                font: 12px Arial, sans-serif;
+                fill: #38bdae;
+              }}
+
+              .line {{
+                stroke: #8b949e;
+                stroke-width: 1;
+              }}
+            </style>
+
+            <line x1="165" y1="25" x2="165" y2="170" class="line"/>
+            <line x1="330" y1="25" x2="330" y2="170" class="line"/>
+
+            <text x="82" y="75" text-anchor="middle" class="number">
+              {total}
+            </text>
+
+            <text x="82" y="105" text-anchor="middle" class="label">
+              Total Contributions
+            </text>
+
+            <text x="82" y="130" text-anchor="middle" class="sub">
+              Last 365 days
+            </text>
+
+            <circle
+              cx="247"
+              cy="72"
+              r="40"
+              fill="none"
+              stroke="#70a5fd"
+              stroke-width="5"
+            />
+
+            <text x="247" y="81" text-anchor="middle" class="current">
+              {current}
+            </text>
+
+            <text x="247" y="130" text-anchor="middle" class="label">
+              Current Streak
+            </text>
+
+            <text x="247" y="153" text-anchor="middle" class="sub">
+              {escape(current_range)}
+            </text>
+
+            <text x="412" y="75" text-anchor="middle" class="number">
+              {longest}
+            </text>
+
+            <text x="412" y="105" text-anchor="middle" class="label">
+              Longest Streak
+            </text>
+
+            <text x="412" y="130" text-anchor="middle" class="sub">
+              {escape(longest_range)}
+            </text>
+
+          </svg>'''
+
+          with open("profile/streak.svg", "w") as f:
+              f.write(svg)
+
+          print(f"Total contributions: {total}")
+          print(f"Current streak: {current}")
+          print(f"Longest streak: {longest}")
+          PY
 
       - name: Commit generated cards
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile/stats.svg profile/top-langs.svg profile/streak.svg
+
+          git add \
+            profile/stats.svg \
+            profile/top-langs.svg \
+            profile/streak.svg
+
           git diff --cached --quiet || git commit -m "Update GitHub stats"
           git push
