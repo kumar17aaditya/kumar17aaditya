@@ -1,29 +1,29 @@
 <svg
   width="495"
-  height="195"
-  viewBox="0 0 495 195"
+  height="272"
+  viewBox="0 0 495 272"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <rect width="495" height="195" rx="6" fill="#1a1b27"/>
+  <rect width="495" height="272" rx="6" fill="#1a1b27"/>
 
   <style>
     .number {
-      font: 700 28px Arial, sans-serif;
+      font: 700 32px Arial, sans-serif;
       fill: #70a5fd;
     }
 
     .current {
-      font: 700 28px Arial, sans-serif;
+      font: 700 32px Arial, sans-serif;
       fill: #bf91f3;
     }
 
     .label {
-      font: 14px Arial, sans-serif;
+      font: 15px Arial, sans-serif;
       fill: #70a5fd;
     }
 
     .sub {
-      font: 12px Arial, sans-serif;
+      font: 13px Arial, sans-serif;
       fill: #38bdae;
     }
 
@@ -33,51 +33,51 @@
     }
   </style>
 
-  <line x1="165" y1="25" x2="165" y2="170" class="line"/>
-  <line x1="330" y1="25" x2="330" y2="170" class="line"/>
+  <line x1="165" y1="48" x2="165" y2="224" class="line"/>
+  <line x1="330" y1="48" x2="330" y2="224" class="line"/>
 
-  <text x="82" y="75" text-anchor="middle" class="number">
-    158
+  <text x="82" y="120" text-anchor="middle" class="number">
+    159
   </text>
 
-  <text x="82" y="105" text-anchor="middle" class="label">
+  <text x="82" y="195" text-anchor="middle" class="label">
     Total Contributions
   </text>
 
-  <text x="82" y="130" text-anchor="middle" class="sub">
+  <text x="82" y="218" text-anchor="middle" class="sub">
     Last 365 days
   </text>
 
   <circle
     cx="247"
-    cy="72"
-    r="40"
+    cy="110"
+    r="50"
     fill="none"
     stroke="#70a5fd"
     stroke-width="5"
   />
 
-  <text x="247" y="81" text-anchor="middle" class="current">
+  <text x="247" y="120" text-anchor="middle" class="current">
     37
   </text>
 
-  <text x="247" y="130" text-anchor="middle" class="label">
+  <text x="247" y="195" text-anchor="middle" class="label">
     Current Streak
   </text>
 
-  <text x="247" y="153" text-anchor="middle" class="sub">
+  <text x="247" y="218" text-anchor="middle" class="sub">
     Jun 30 - Aug 5
   </text>
 
-  <text x="412" y="75" text-anchor="middle" class="number">
+  <text x="412" y="120" text-anchor="middle" class="number">
     37
   </text>
 
-  <text x="412" y="105" text-anchor="middle" class="label">
+  <text x="412" y="195" text-anchor="middle" class="label">
     Longest Streak
   </text>
 
-  <text x="412" y="130" text-anchor="middle" class="sub">
+  <text x="412" y="218" text-anchor="middle" class="sub">
     Jun 30 - Aug 5
   </text>
 
