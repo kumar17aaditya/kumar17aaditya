@@ -153,7 +153,6 @@ Linux server health monitoring and automation analytics platform with real-time 
 
 - 📧 Email: **kumar17aaditya@gmail.com**
 - 💼 LinkedIn: **https://linkedin.com/in/aditya-kumar-82a292251**
-- 🏆 LeetCode: **https://leetcode.com/u/adityakumar171/**
 
 ---
 
