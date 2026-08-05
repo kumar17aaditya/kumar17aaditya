@@ -129,12 +129,8 @@ Automation platform developed during my internship at Nokia for infrastructure m
 </p>
 
 <p align="center">
-  <img height="180em" src="https://github-readme-stats-sigma-five.vercel.app/api?username=kumar17aaditya&show_icons=true&theme=tokyonight&hide_border=true" />
-  <img height="180em" src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=kumar17aaditya&layout=compact&theme=tokyonight&hide_border=true" />
-</p>
-
-<p align="center">
-  <img src="https://streak-stats.demolab.com/?user=kumar17aaditya&theme=tokyonight&hide_border=true&v=2" />
+  <img height="180em" src="./profile/top-langs.svg" />
+  <img height="180em" src="./profile/streak.svg" />
 </p>
 
 ---
